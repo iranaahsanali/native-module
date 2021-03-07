@@ -14,7 +14,8 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
+  NativeModules
 } from 'react-native';
 
 import {
@@ -26,6 +27,11 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
+
+  const showAlert = (message) => {
+    alert(message)
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -37,9 +43,12 @@ const App: () => React$Node = () => {
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
               <TouchableOpacity onPress={() => {
-
+                console.log(NativeModules.NativeModuleManager)
+                // NativeModules.NativeModuleManager.doSomethingGiveBack(message => {
+                //   showAlert(message)
+                // })
               }}>
-                <Text>Consume Native Code</Text>
+                <Text>Consume Native Code </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -62,6 +71,7 @@ const styles = StyleSheet.create({
   },
   sectionContainer: {
     marginTop: 32,
+    alignItems: 'center',
     paddingHorizontal: 24,
   },
   sectionTitle: {

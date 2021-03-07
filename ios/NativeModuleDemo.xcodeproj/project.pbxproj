@@ -20,6 +20,8 @@
 		463A2DC87E6C69D4F37493E9 /* libPods-NativeModuleDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E6B73136C7284B65C920EB1 /* libPods-NativeModuleDemo.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B4C3704B72C0765150B23B3E /* libPods-NativeModuleDemo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FA083341F1CD308638EF45E /* libPods-NativeModuleDemo-tvOSTests.a */; };
+		FA60299025F3E4B400A655D8 /* NativeModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA60298F25F3E4B400A655D8 /* NativeModuleManager.swift */; };
+		FA6029F925F3EC9100A655D8 /* NativeModuleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6029F825F3EC9100A655D8 /* NativeModuleManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,9 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EF00A8B9DC8903E158BF779C /* Pods-NativeModuleDemo-NativeModuleDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeModuleDemo-NativeModuleDemoTests.release.xcconfig"; path = "Target Support Files/Pods-NativeModuleDemo-NativeModuleDemoTests/Pods-NativeModuleDemo-NativeModuleDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		FA60298E25F3E4B300A655D8 /* NativeModuleDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NativeModuleDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		FA60298F25F3E4B400A655D8 /* NativeModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeModuleManager.swift; sourceTree = "<group>"; };
+		FA6029F825F3EC9100A655D8 /* NativeModuleManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeModuleManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +137,9 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				FA60298F25F3E4B400A655D8 /* NativeModuleManager.swift */,
+				FA60298E25F3E4B300A655D8 /* NativeModuleDemo-Bridging-Header.h */,
+				FA6029F825F3EC9100A655D8 /* NativeModuleManager.m */,
 			);
 			name = NativeModuleDemo;
 			sourceTree = "<group>";
@@ -194,7 +202,6 @@
 				AC5BB47FCCFF67CF2C17D424 /* Pods-NativeModuleDemo-tvOSTests.debug.xcconfig */,
 				BE5D8C254A44102D8F9FB7D5 /* Pods-NativeModuleDemo-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -294,7 +301,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -568,7 +575,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6029F925F3EC9100A655D8 /* NativeModuleManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				FA60299025F3E4B400A655D8 /* NativeModuleManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,6 +619,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 65313498BF991F9B189711C9 /* Pods-NativeModuleDemo-NativeModuleDemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -633,6 +643,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF00A8B9DC8903E158BF779C /* Pods-NativeModuleDemo-NativeModuleDemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = NativeModuleDemoTests/Info.plist;
@@ -664,8 +675,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iranaahsanali.me.native.module;
 				PRODUCT_NAME = NativeModuleDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeModuleDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -686,8 +698,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iranaahsanali.me.native.module;
 				PRODUCT_NAME = NativeModuleDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "NativeModuleDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
