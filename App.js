@@ -44,9 +44,9 @@ const App: () => React$Node = () => {
             <View style={styles.sectionContainer}>
               <TouchableOpacity onPress={() => {
                 console.log(NativeModules.NativeModuleManager)
-                // NativeModules.NativeModuleManager.doSomethingGiveBack(message => {
-                //   showAlert(message)
-                // })
+                NativeModules.NativeModuleManager.doSomethingGiveBack(message => {
+                  showAlert(message)
+                })
               }}>
                 <Text>Consume Native Code </Text>
               </TouchableOpacity>
